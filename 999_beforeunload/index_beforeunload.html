@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+</head>
+
+<body ng-controller="testCtrl">
+
+    <h1>Test beforeunload</h1>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script type="text/javascript" src="../assest/js/angularJS_1/angular.js"></script>
+    <script>
+        // $(window).bind("beforeunload", function () {
+        //     return confirm("Do you really want to close?");
+        // });
+
+        // window.onbeforeunload = function (e) {
+        //     // Your logic to prepare for 'Stay on this Page' goes here 
+        //     return "Please click 'Stay on this Page' and we will give you candy";
+        // };
+
+        // $(window).on("unload", function (e) {
+        //     //alert("call"); // Blocked alert('call') during unload.
+        //     console.log("this will be triggered");
+        // });
+
+       var testCtrl = function($scope) {
+            $scope.$on('$locationChangeStart', function (event, next, current) {
+                var answer = confirm('Are you sure you want to navigate away from this page');
+                // if (check(next + current)) {
+                //     if (!answer) {
+                //         event.preventDefault();
+                //     }
+                // }
+            });
+        }
+
+      
+    </script>
+</body>
+
+</html>
