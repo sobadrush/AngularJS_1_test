@@ -55,9 +55,9 @@ var cartController = function ($scope) {
      * 計算總購買數
      */
     $scope.totalQuanity = function () {
-        var total = 0;
-        angular.forEach($scope.myCart, function (item) {
-            total += item.quantity
+        let total = 0;
+        angular.forEach($scope.myCart, function (item) {            
+            total += parseInt(item.quantity);
         });
         return total;
     }
