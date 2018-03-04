@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <style>
+            .myFontColor {
+                color: brown;
+            }
+        </style>
+    </head>
+    <body>
+
+        <div ng-app="myAppModule">
+            <div ng-controller="firstController">
+                <H2 ng-class="{'myFontColor':true}">{{empName}}</H2>
+            </div>
+            <div ng-controller="secondController">
+                <H2 ng-class="{'myFontColor':true}">{{empName}}</H2>
+            </div>
+        </div>
+
+        <script type="text/javascript" src="../assest/js/angularJS_1/angular_1_2.js"></script>
+        <script type="text/javascript" src="./index.js"></script>
+        <script>
+
+        </script>
+    </body>
+</html>
