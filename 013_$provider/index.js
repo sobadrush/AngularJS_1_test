@@ -12,13 +12,22 @@ angular.module('myAppModule', [], function ($provide /*angular自動注入$provi
                     message: 'CustomerService Message'
                 }
             }
+        });
+
+        $provide.provider('CustomerService222', function () {
+            this.$get = function () {
+                return {
+                    message: 'CustomerService222 Message'
+                }
+            }
         })
     })
 
     // 定義一個【控制器firstController】在【myAppModule模組】中
-    .controller('firstController', function ($scope, CustomerService/*注入L8的Service*/) {
+    .controller('firstController', function ($scope, CustomerService/*注入L8的Service*/ , CustomerService222) {
         console.log(222);
         console.log('222 CustomerService',CustomerService);
+        console.log('222 CustomerService222',CustomerService222);
         $scope.empName = '羅傑';
     })
 
