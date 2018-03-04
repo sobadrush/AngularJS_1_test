@@ -3,8 +3,7 @@ var cartController = function ($scope) {
     $scope.myCart = undefined;
 
     $scope.init = function () {
-        $scope.myCart = [
-            {
+        $scope.myCart = [{
                 id: 1000,
                 name: 'iPhone 5s',
                 quantity: 3,
@@ -56,7 +55,7 @@ var cartController = function ($scope) {
      */
     $scope.totalQuanity = function () {
         let total = 0;
-        angular.forEach($scope.myCart, function (item) {            
+        angular.forEach($scope.myCart, function (item) {
             total += parseInt(item.quantity);
         });
         return total;
@@ -88,20 +87,42 @@ var cartController = function ($scope) {
      * 減少購買數量
      */
     $scope.reduceQuantity = function (_item) {
-        if (_item.quantity >= 1) {
+        if (_item.quantity > 1) {
             _item.quantity--;
-        }else{
+        } else {
             let rtn = confirm('數量 < 0，直接移除此購買項目！');
-            if(!!rtn){
+            if (!!rtn) {
                 $scope.remove(_item);
             }
         }
     }
 
-     /**
+    /**
      * 增加購買數量
      */
     $scope.addQuantity = function (_item) {
         _item.quantity++;
     }
+
+    /**
+     * 監控 myCart 中所有變數
+     */
+    $scope.$watch('myCart', function (newValue, oldValue) {
+        // console.log('newValue', newValue);
+        // console.log('oldValue', oldValue);
+
+        angular.forEach(newValue, (elem,index) => {
+            // console.log(elem.quantity);
+            // console.log('index >>>',index);
+            if (elem.quantity < 1) {
+                let rtn = confirm('輸入負值將會移除此商品，確定嗎?');
+                if (!!rtn) {
+                    $scope.remove(elem);
+                } else {
+                    // console.log('oldValue[index] >>>',oldValue[index]);
+                    elem.quantity = oldValue[index].quantity;// 若confirm取消，將數值還原
+                }
+            }
+        })
+    }, true /*DeepWatch*/ );
 }
