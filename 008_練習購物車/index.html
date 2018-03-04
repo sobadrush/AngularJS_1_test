@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="./vendor/bootstrap4/css/bootstrap.min.css">
+    <style>
+        .errorStyle {
+            color: red;
+        }
+    </style>
+</head>
+
+<body ng-app="">
+
+    <div class="container" ng-controller="cartController">
+        <table class="table table-striped" ng-show="!isProductsInCart()">
+            <thead>
+                <tr>
+                    <th scope="col">產品編號</th>
+                    <th scope="col">產品名稱</th>
+                    <th scope="col">購買數量</th>
+                    <th scope="col">產品單價</th>
+                    <th scope="col">產品總價</th>
+                    <th scope="col">操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="item in myCart">
+                    <!-- <th scope="row">1</th> -->
+                    <td>{{item.id}}</td>
+                    <td>{{item.name}}</td>
+                    <td>
+                        <button type="button" class="btn btn-primary" ng-click="reduceQuantity( item )">-</button>
+                        {{item.quantity}}
+                        <button type="button" class="btn btn-primary" ng-click="addQuantity( item )">+</button>
+                    </td>
+                    <td>{{item.price}}</td>
+                    <td>{{ item.price * item.quantity }}</td>
+                    <td>
+                        <button type="button" class="btn btn-danger" ng-click="remove( item )">刪除</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2"></td>
+                    <td style="font-size: 20px;">總購買數量 : {{ totalQuanity() }}</td>
+                    <td style="font-size: 20px;">總購買金額 : {{ totalPrice() }}</td>
+                    <td colspan="2" style="text-align:center">
+                        <button type="button" class="btn btn-warning" ng-click="myCart = [];">清空購物車</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <h1 ng-show="isProductsInCart()" ng-class="{'errorStyle': isProductsInCart() }">購物車中無商品！</h1>
+    </div>
+
+
+    <script type="text/javascript" src="../assest/js/angularJS_1/angular_1_2.js"></script>
+    <script src="./index.js"></script>
+</body>
+
+</html>
