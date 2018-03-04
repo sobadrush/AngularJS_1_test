@@ -21,9 +21,11 @@
 
         <hr>
         <div ng-controller="childController">
+
             myName >>> <p>{{myName}}</p>
             childVO.deptName >>> <p>{{childVO.deptName}}</p>
             $parent.inputVO.deptName >>> <p>{{$parent.inputVO.deptName}}</p>
+
 
             <table border="1" style="color: rgb(22, 175, 81)">
                 <tr ng-repeat="empVO in childVO.depts_below_emps">
