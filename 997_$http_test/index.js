@@ -48,6 +48,7 @@ myApp.controller('firstController', function ($scope, $http, myHttpClient) {
                 console.log('cbData.towns fromJson >>> ', angular.fromJson( angular.toJson( cbData['towns'] ) )); // ※轉成JS物件
                 $scope.townsList = cbData['towns']; // 將資料放到 $scope.townsList 中，前端用ng-repeat渲染
                 $scope.cityName  = cbData['name']; 
+                $scope.originCallBackData = cbData; // template中使用 pipe json
             });
 
     }

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html ng-app="routeModule">
+    <head>
+        <meta charset="utf-8"/>
+
+        <script type="text/javascript" src="../assest/js/angularJS_1/v1.5.7/angular.js"></script>
+        <script type="text/javascript" src="../assest/js/angularJS_1/v1.5.7/angular-route.js"></script>
+        <!-- <script src="./route.js"></script> -->
+        <script src="./route2.js"></script>
+
+        <script type="text/javascript">
+            angular.element(document.getElementsByTagName('head'))
+                .append(angular.element('<base href="' + window.location.pathname + '" />'));
+        </script>
+
+    </head>
+    <body>
+        <!-- <a href="index">首頁</a> -->
+        &nbsp;&nbsp;
+        |
+        &nbsp;&nbsp;
+        <a href="about">關於我們</a>
+        &nbsp;&nbsp;
+        |
+        &nbsp;&nbsp;
+        <a href="product">產品</a>
+        <hr/>
+        <div ng-view>
+            
+        </div>
+    </body>
+</html>
