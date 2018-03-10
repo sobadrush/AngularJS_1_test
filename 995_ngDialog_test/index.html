@@ -1,35 +1,79 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
-    <head>
-        <meta charset="utf-8" />
-        <link rel="stylesheet" href="assest/ngDialog/css/ngDialog.min.css">
-        <link rel="stylesheet" href="assest/ngDialog/css/ngDialog-theme-default.css">
-        <link rel="stylesheet" href="assest/ngDialog/css/ngDialog-theme-plain.css">
-        <link rel="stylesheet" href="assest/ngDialog/css/ngDialog.css">
-        <script type="text/javascript" src="assest/angular_v1.5.7/angular.js"></script>
-        <script src="assest/ngDialog/js/ngDialog.js"></script>
-    </head>
+<head>
+    <title>Bootstrap 樣板</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-    <body ng-app="myApp">
+    <link rel="stylesheet" href="assest/ngDialog/css/ngDialog.min.css">
+    <link rel="stylesheet" href="assest/ngDialog/css/ngDialog-theme-default.css">
+    <link rel="stylesheet" href="assest/ngDialog/css/ngDialog-theme-plain.css">
+    <link rel="stylesheet" href="assest/ngDialog/css/ngDialog.css">
+    <script type="text/javascript" src="assest/angular_v1.5.7/angular.js"></script>
+    <script src="assest/ngDialog/js/ngDialog.js"></script>
+    <script src="modules/mainModule.js"></script>
+    <script src="controllers/mainController.js"></script>
+    <script src="assest/ngDialog/template/popupTmpl.js"></script>
+</head>
 
-        <div ng-controller="mainController" >
-            <button ng-click="clickToOpen()">呼叫NGDialog</button>
+<body ng-app="myApp">
+
+    <div class="container-fluid">
+        <div class="row content">
+            <div class="col-sm-3 sidenav">
+                <h4>My Blog</h4>
+                <ul class="nav nav-pills nav-stacked" ng-controller="mainController" >
+                    <li class="active">
+                        <!-- 【NgDialog 使用方法 】 https://github.com/likeastore/ngDialog -->
+                        <a href="javascript:void(0)" ng-click="clickToOpen()">呼叫 NGDialog</a>
+                    </li>
+                    <li>
+                        <a href="#section2">Friends</a>
+                    </li>
+                    <li>
+                        <a href="#section3">Family</a>
+                    </li>
+                    <li>
+                        <a href="#section3">Photos</a>
+                    </li>
+                </ul>
+                <br>
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Search Blog..">
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" type="button">
+                            <span class="glyphicon glyphicon-search"></span>
+                        </button>
+                    </span>
+                </div>
+            </div>
+
+            <div class="col-sm-9">
+                <h4>
+                    <small>RECENT POSTS</small>
+                </h4>
+                <hr>
+                <h2>angular1 架構</h2>
+                <h5><span class="glyphicon glyphicon-time"></span> Post by Jane Dane, Sep 27, 2015.</h5>
+                <br>
+                    <img src="assest/pics/angular1_觀念.png" alt="" style="width:500px"/>
+                <br>
+                <br>
+                <h4>
+                    <small>RECENT POSTS</small>
+                </h4>
+                <hr>
+            </div>
         </div>
+    </div>
 
-        <script>
-            // 【使用方法】 https://github.com/likeastore/ngDialog
-            var myApp = angular.module('myApp', ['ngDialog']);
-            myApp.controller('mainController',['$scope','ngDialog',function($scope , myNgDialog) {
-                $scope.clickToOpen = function() {
-                    myNgDialog.open({
-                        template : 'assest/ngDialog/template/popupTmpl.html',
-                        className: 'ngdialog-theme-default',
-                    });
-                }
-            }]);
-        </script>
-
-    </body>
+    <footer class="container-fluid">
+        <p>Footer Text</p>
+    </footer>
+</body>
 
 </html>

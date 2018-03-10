@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <meta charset="utf-8" />
+        <link rel="stylesheet" href="assest/ngDialog/css/ngDialog.min.css">
+        <link rel="stylesheet" href="assest/ngDialog/css/ngDialog-theme-default.css">
+        <link rel="stylesheet" href="assest/ngDialog/css/ngDialog-theme-plain.css">
+        <link rel="stylesheet" href="assest/ngDialog/css/ngDialog.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+        <script src="assest/angular_v1.5.7/angular.js"></script>
+        <script src="assest/ngDialog/js/ngDialog.js"></script>
+        <script src="modules/mainModule.js"></script>
+        <script src="controllers/mainController.js"></script>
+    </head>
+
+    <body ng-app="myApp">
+        
+        <div class="container" style="margin:5em 5em 5em 5em ">
+            <img src="assest/pics/angular1_觀念.png" alt="" style="width:500px"/>
+            <div ng-controller="mainController" >
+                <button ng-click="clickToOpen()">呼叫NGDialog</button>
+            </div>
+        </div>
+
+        <script>
+            // 【 NgDialog 使用方法 】 https://github.com/likeastore/ngDialog
+        </script>
+    </body>
+
+</html>
