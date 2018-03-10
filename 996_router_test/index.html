@@ -1,32 +1,56 @@
 <!DOCTYPE html>
-<html ng-app="routeModule">
-    <head>
-        <meta charset="utf-8"/>
+<html>
 
-        <script type="text/javascript" src="../assest/js/angularJS_1/v1.5.7/angular.js"></script>
-        <script type="text/javascript" src="../assest/js/angularJS_1/v1.5.7/angular-route.js"></script>
-        <!-- <script src="./route.js"></script> -->
-        <script src="./route2.js"></script>
+<head>
+    <meta charset="utf-8" />
+    <title>Angular路由測試(須用npm安裝http-server)</title>
+    <script src="http://apps.bdimg.com/libs/angular.js/1.4.6/angular.min.js"></script>
+    <script src="http://apps.bdimg.com/libs/angular-route/1.3.13/angular-route.js"></script>
+    <script src="./route.js"></script>
+    <!-- <script src="./route2.js"></script> -->
 
-        <script type="text/javascript">
+    <base href="/">
+    <link rel="stylesheet" href="./assest/css/myStyle.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+</head>
+
+<body ng-app="routeModule" class="container">
+    <p></p>
+    <div class="row">
+        <img src="./assest/pics/angular.png" alt="angular.png">
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <a class="btn btn-outline-primary" href="#/hello">哈囉頁</a>
+            &nbsp;&nbsp; | &nbsp;&nbsp;
+            <a class="btn btn-outline-secondary" href="#/about">關於我們</a>
+            &nbsp;&nbsp; | &nbsp;&nbsp;
+            <a class="btn btn btn-outline-success" href="#/product">產品</a>
+            &nbsp;&nbsp; | &nbsp;&nbsp;
+            <a class="btn btn btn-outline-warning" href="#/noPage">預設路由(Welcome)</a>
+        </div>
+        <hr>
+        <div class="row" ng-controller="firstController">
+            <button type="button" class="btn btn-primary" ng-click="testRedirect_01()">哈囉頁</button> &nbsp;&nbsp; | &nbsp;&nbsp;
+            <button type="button" class="btn btn-secondary" ng-click="testRedirect_02()">關於我們</button> &nbsp;&nbsp; | &nbsp;&nbsp;
+            <button type="button" class="btn btn-success" ng-click="testRedirect_03()">產品</button> &nbsp;&nbsp; | &nbsp;&nbsp;
+            <button type="button" class="btn btn-warning" ng-click="testRedirect_04()">預設路由(Welcome)</button>
+        </div>
+    </div>
+    <hr>
+    <div class="container">
+        <div class="container" ng-view></div>
+    </div>
+
+</body>
+
+</html>
+
+
+
+
+<!-- <script type="text/javascript">
             angular.element(document.getElementsByTagName('head'))
                 .append(angular.element('<base href="' + window.location.pathname + '" />'));
-        </script>
-
-    </head>
-    <body>
-        <!-- <a href="index">首頁</a> -->
-        &nbsp;&nbsp;
-        |
-        &nbsp;&nbsp;
-        <a href="about">關於我們</a>
-        &nbsp;&nbsp;
-        |
-        &nbsp;&nbsp;
-        <a href="product">產品</a>
-        <hr/>
-        <div ng-view>
-            
-        </div>
-    </body>
-</html>
+    </script> -->
