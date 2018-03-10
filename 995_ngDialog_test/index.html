@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <meta charset="utf-8" />
+        <link rel="stylesheet" href="assest/ngDialog/css/ngDialog.min.css">
+        <link rel="stylesheet" href="assest/ngDialog/css/ngDialog-theme-default.css">
+        <link rel="stylesheet" href="assest/ngDialog/css/ngDialog-theme-plain.css">
+        <link rel="stylesheet" href="assest/ngDialog/css/ngDialog.css">
+        <script type="text/javascript" src="assest/angular_v1.5.7/angular.js"></script>
+        <script src="assest/ngDialog/js/ngDialog.js"></script>
+    </head>
+
+    <body ng-app="myApp">
+
+        <div ng-controller="mainController" >
+            <button ng-click="clickToOpen()">呼叫NGDialog</button>
+        </div>
+
+        <script>
+            // 【使用方法】 https://github.com/likeastore/ngDialog
+            var myApp = angular.module('myApp', ['ngDialog']);
+            myApp.controller('mainController',['$scope','ngDialog',function($scope , myNgDialog) {
+                $scope.clickToOpen = function() {
+                    myNgDialog.open({
+                        template : 'assest/ngDialog/template/popupTmpl.html',
+                        className: 'ngdialog-theme-default',
+                    });
+                }
+            }]);
+        </script>
+
+    </body>
+
+</html>
