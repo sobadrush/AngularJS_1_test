@@ -8,7 +8,9 @@
     <script src="http://apps.bdimg.com/libs/angular-route/1.3.13/angular-route.js"></script>
     <script src="./assest/js/angular/module/myModule.js"></script>
     <script src="./assest/js/angular/controller/myController.js"></script>
-    <!-- <script src="./route2.js"></script> -->
+    <script src="./pages/helloController.js"></script>
+    <script src="./pages/aboutController.js"></script>
+    <script src="./pages/cityController.js"></script>
 
     <base href="/">
     <link rel="stylesheet" href="./assest/css/myStyle.css">
@@ -23,7 +25,7 @@
 
     <div class="container" ng-controller="firstController">
         <div class="row">
-            <a class="btn btn-outline-primary" href="#/hello/Roger">哈囉頁</a>
+            <a class="btn btn-outline-primary" href="#/hello/Roger?test=999#MyHashValue">哈囉頁</a>
             &nbsp;&nbsp; | &nbsp;&nbsp;
             <a class="btn btn-outline-secondary" href="#/about">關於我們</a>
             &nbsp;&nbsp; | &nbsp;&nbsp;
@@ -33,7 +35,7 @@
         </div>
         <hr>
         <div class="row">
-            <a class="btn btn-default" ng-href="#/hello/Kelly" >哈囉頁</a>
+            <a class="btn btn-default" ng-href="#/hello/Kelly#MyHashValue">哈囉頁</a>
             &nbsp;&nbsp; | &nbsp;&nbsp;
             <a class="btn btn-default" ng-href="#/about">關於我們</a>
             &nbsp;&nbsp; | &nbsp;&nbsp;
@@ -48,7 +50,13 @@
             <button type="button" class="btn btn-success" ng-click="testRedirect_03()">產品</button> &nbsp;&nbsp; | &nbsp;&nbsp;
             <button type="button" class="btn btn-warning" ng-click="testRedirect_04()">預設路由(Welcome)</button>
         </div>
-    </div>
+        <hr>
+        <!-- <div class="row" ng-controller="cityController"> -->
+        <div class="row">
+            <a class="btn btn-outline-danger" href="javascript:void(0)" ng-click="redirectToQueryCity()" >查詢城市</a> &nbsp;
+            <input type="text" class="text-center" ng-model="cityId" /> &nbsp;&nbsp;
+        </div>
+    </div><!-- end-of firstController -->
     <hr>
     <div class="container">
         <div class="container" ng-view></div>

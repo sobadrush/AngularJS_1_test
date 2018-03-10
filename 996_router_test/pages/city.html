@@ -1,0 +1,24 @@
+<div class="container" ng-controller="cityController">
+    <!-- {{ callBackData | json }} -->
+    <h1 style="font-family:微軟正黑體;">城市 : <span style="color:rgb(186, 10, 209)">{{ cityName }}</span> </h1>
+    <div class="row">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">id</th>
+                    <th scope="col">name</th>
+                    <th scope="col">lat</th>
+                    <th scope="col">lng</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="town in callBackData.towns">
+                    <td>{{town.id}}</td>
+                    <td>{{town.name}}</td>
+                    <td>{{town.position.lat}}</td>
+                    <td>{{town.position.lng}}</td>
+                </tr>         
+            </tbody>
+        </table>
+    </div>
+</div>
