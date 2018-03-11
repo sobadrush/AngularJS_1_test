@@ -1,0 +1,1 @@
+let myApp = angular.module('myApp', [ /*須要由ngModule注入的模組*/ ]);
