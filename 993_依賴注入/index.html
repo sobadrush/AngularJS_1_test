@@ -18,10 +18,10 @@
     <p>factory 是一个函数用于返回值。在 service 和 controller 需要时创建。通常我们使用 factory 函数来计算或返回值。</p>
 
     <div ng-controller="firstController">
-        <input type="text" ng-model="inputVal">
+        <input type="text" value="{{ inputVal | myFilter : this }}" ng-model="inputVal">
         <button type="button" class="btn btn-primary" ng-click="calcSquare()">計算平方</button>
         <br>
-        平方 = <input type="text" disabled value="{{outputVal}}">
+        平方 = <input type="text" disabled value="{{outputVal}}">{{ inputVal | myFilter : 123 }}
     </div>
 
 </body>
