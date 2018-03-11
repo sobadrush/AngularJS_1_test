@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+    <script src="./assest/modules/mainModule.js"></script>
+</head>
+
+<body ng-app="myApp">
+    <h3>w3c教學：
+        <span style="color:orange">http://www.runoob.com/angularjs/angularjs-dependency-injection.html</span>
+    </h3>
+    <h1>使用 provider</h1>
+    <p>AngularJS 中通过 provider 创建一个 service、factory等(配置阶段)。 Provider 中提供了一个 factory 方法 get()，它用于返回 value/service/factory。</p>
+    <h1>使用 factory</h1>
+    <p>factory 是一个函数用于返回值。在 service 和 controller 需要时创建。通常我们使用 factory 函数来计算或返回值。</p>
+
+    <div ng-controller="firstController">
+        <input type="text" ng-model="inputVal">
+        <button type="button" class="btn btn-primary" ng-click="calcSquare()">計算平方</button>
+        <br>
+        平方 = <input type="text" disabled value="{{outputVal}}">
+    </div>
+
+</body>
+
+</html>
