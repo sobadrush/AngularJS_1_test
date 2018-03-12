@@ -1,0 +1,1 @@
+https://stackoverflow.com/questions/18871277/adding-multiple-class-using-ng-class
