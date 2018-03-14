@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+    <style>
+        .myBorder {
+            border: 1px dashed red;
+        }
+
+        div {
+            padding: 5px 5px 5px 5px;
+        }
+
+        H1 {
+            font-family: Microsoft JhengHei;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body ng-app="myApp" class="container">
+    <h1>測試 <span style="color:red;">$controller('xxx', { $scope: $scopeGG });</span></h1>
+    <br>
+
+    <div ng-controller="_1st_controller" ng-class="{'myBorder':true}">
+        <h3>_1st_controller</h3>
+        <table class="table table-striped">
+            <thead>
+            </thead>
+            <tbody>
+                <tr ng-repeat="emp in empData">
+                    <th scope="row">{{$index + 1}}</th>
+                    <td>empData[ {{$index}} ] = </td>
+                    <td>{{ emp | json }}</td>
+                </tr>
+                <tr>
+                    <th scope="row"></th>
+                    <td>calcSquare( 16 ) = </td>
+                    <td>{{ calcSquare( 16 ) }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <br>
+    <div ng-controller="_2nd_controller" ng-style="{'border': '1px solid blue'}">
+        <h3>_2nd_controller --- 使用 $controller 繼承 _1st_controller </h3>
+        <table class="table table-striped">
+            <thead>
+            </thead>
+            <tbody>
+                <tr ng-repeat="emp in empData">
+                    <th scope="row">{{$index + 1}}</th>
+                    <td>empData[ {{$index}} ] = </td>
+                    <td>{{ emp | json }}</td>
+                </tr>
+                <tr>
+                    <th scope="row"></th>
+                    <td>calcSquare( 9 ) = </td>
+                    <td>{{ calcSquare( 9 ) }}</td>
+                </tr>
+            </tbody>
+        </table>
+
+
+    </div>
+    <br>
+
+    <!-- $controller 說明 -->
+    <div>
+        <table class="table table-sm table-dark">
+            <thead>
+                <tr>
+                    <th scope="row" colspan="2">【$controller( )】說明</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row">1</th>
+                    <td>(1)</td>
+                    <td>先呼叫_1st_controller的建構函式</td>
+                </tr>
+                <tr>
+                    <th scope="row">2</th>
+                    <td>(2)</td>
+                    <td>再呼叫_2nd_controller的建構函式</td>
+                </tr>
+                <tr>
+                    <th scope="row">2</th>
+                    <td>(3)</td>
+                    <td>注入 _1st_controller 的區域變數到 本controller (官方原文：Injection locals for Controller.)</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div>
+        <table class="table table-striped table-dark">
+                <tbody>
+                    <tr>
+                        <th scope="row">1</th>
+                        <td>參考(1)</td>
+                        <td>https://docs.angularjs.org/api/ng/service/$controller</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">2</th>
+                        <td>參考(2)</td>
+                        <td>https://stackoverflow.com/questions/34621417/ngmock-injecting-scope-local-into-controller</td>
+                    </tr>
+                </tbody>
+        </table>
+    </div>
+
+    <script>
+        // 參考(1) : https://docs.angularjs.org/api/ng/service/$controller
+        // 參考(2) : https://stackoverflow.com/questions/34621417/ngmock-injecting-scope-local-into-controller
+        let myApp = angular.module('myApp', []);
+
+        myApp.controller('_1st_controller', ['$rootScope','$scope', function ($rootScope , $scope) {
+            
+            $scope.empData = [
+                {empName: 'Roger',empAge: 18,empSex: 'male'},
+                {empName: 'Kelly',empAge: 23,empSex: 'female'},
+                {empName: 'Linda',empAge: 8,empSex: 'female'},
+            ];
+
+            $scope.calcSquare = function (_num) {
+                return _num * _num;
+            }
+
+            console.log("_1st_controller's $scope >>> ", $scope);
+        }]);
+
+        myApp.controller('_2nd_controller', ['$scope', '$controller', function ($scopeGG, $controllerGG) {
+            
+            //【$controller】
+            // 1. 先呼叫_1st_controller的建構函式
+            // 2. 再呼叫_2nd_controller的建構函式
+            // 3. 注入 _1st_controller 的區域變數到 本controller (官方原文：Injection locals for Controller.)
+            $controllerGG('_1st_controller', { $scope: $scopeGG }); 
+            // $controllerGG('_1st_controller', { '$scope': $scopeGG }); // 也可以寫 '$scope'
+
+            console.log("_2nd_controller's $scopeGG >>> ", $scopeGG);
+        }]);
+    </script>
+</body>
+
+</html>
