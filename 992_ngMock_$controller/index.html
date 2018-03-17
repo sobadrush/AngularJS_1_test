@@ -120,10 +120,12 @@
 
         myApp.controller('_1st_controller', ['$rootScope','$scope', function ($rootScope , $scope) {
             
+            $rootScope.testData = '我是$rootScope測試資料'; // 測試AngularJS Batarang Chrome外掛
+
             $scope.empData = [
-                {empName: 'Roger',empAge: 18,empSex: 'male'},
-                {empName: 'Kelly',empAge: 23,empSex: 'female'},
-                {empName: 'Linda',empAge: 8,empSex: 'female'},
+                { empName: 'Roger', empAge: 18 , empSex: 'male'   },
+                { empName: 'Kelly', empAge: 23 , empSex: 'female' },
+                { empName: 'Linda', empAge:  8 , empSex: 'female' },
             ];
 
             $scope.calcSquare = function (_num) {
