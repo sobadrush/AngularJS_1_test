@@ -22,6 +22,9 @@
         <button type="button" class="btn btn-primary" ng-click="calcSquare()">計算平方</button>
         <br>
         平方 = <input type="text" disabled value="{{outputVal}}">{{ inputVal | myFilter : 123 }}
+        <br>
+        <br>
+        <button type="button" class="btn btn-danger" ng-click="myAlert($event)" >測試Alert</button>
     </div>
 
 </body>

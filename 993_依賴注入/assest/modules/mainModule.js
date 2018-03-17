@@ -17,6 +17,11 @@ myApp.service('CalcService', ['MathService', function (mathSvc) {
     this.square = function (_aa, _bb) {
         return mathSvc.multiply(_aa, _bb);
     }
+
+    this.testAlert = function(_msg) {
+        alert('GGG 訊息 >>> ' + _msg);    
+    }
+
 }]);
 
 
@@ -26,6 +31,12 @@ myApp.controller('firstController', ['$scope', 'CalcService', function ($scope, 
 
     $scope.calcSquare = function () {
         $scope.outputVal = CalcService.square($scope.inputVal, $scope.inputVal);
+    }
+
+    $scope.myAlert = function(_event) {
+        console.log('$event >>> ' , _event);
+        let msg = _event.target.innerText;
+        CalcService.testAlert(msg);
     }
 
 }]);
