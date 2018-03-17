@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+        <link   rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    </head>
+    <body ng-app="myApp" class="container">
+
+        <div class="container" style="border:solid 1px blue">
+            <h2>說明</h2>
+            <table class="table table-striped">
+                <tbody>
+                    <tr>
+                        <th scope="row">1</th>
+                        <td>(1)</td><td>in AngularJS Use : ($event) instead of (this).</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">2</th>
+                        <td>(2)</td><td>(angular.element) is the jQuery($).</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">3</th>
+                        <td>(3)</td><td>(.target) is the [HtmlElementObject]</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <hr>
+        <hr>
+
+        <div class="container" ng-controller="FirstController" >
+            <h2>doClick001()</h2>
+            <button type="button" class="btn btn-warning" ng-click="doClick001($event)" >測試 ngClick($event) 傳標籤DOM </button>
+
+            <br><br>
+
+            <h2>doClick002()</h2>
+            <input type="text" value="測試input訊息"/>
+            <button type="button" class="btn btn-primary" ng-click="doClick002()" sibs>測試2</button>
+        </div>
+
+
+        <hr>
+        <hr>
+        <div class="container">
+            <table class="table table-striped table-dark">
+                <tbody>
+                    <tr>
+                        <th scope="row">參考(1)</th>
+                        <td>https://stackoverflow.com/questions/28182649/how-to-pass-this-through-ng-click-to-an-angular-function</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">參考(2)</th>
+                        <td>https://stackoverflow.com/questions/18212098/what-is-the-angular-way-to-get-an-elements-siblings</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">參考(3)</th>
+                        <td>https://docs.angularjs.org/api/ng/function/angular.element</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <script>
+            let myApp = angular.module('myApp',[]);
+            myApp.controller('FirstController', ['$rootScope', '$scope', function( $rootScope, $scope ) {
+
+                $scope.doClick001 = function(_event) {
+                    console.info('$event >>> ', _event);
+                    let btnTag = _event.target;
+                    console.info('$event.target >>> ', btnTag);
+                    alert('Message = ' + btnTag.innerText);
+                }
+
+                $scope.doClick002 = function() {
+                    console.log('doClick002 >>> ' , $scope );
+                    alert( $scope.myMessages['msgToAlert'] );
+                }
+            }]);
+
+            // 【 自訂 Directive 】
+            myApp.directive('sibs', function() {
+                return {
+                    link: function(scope, element, attrs) {
+                        element.on('click', function() {
+                            console.log('scope >>> '   , scope);
+                            console.log('element >>> ' , element);
+                            console.log('element[0] >>> ' , element[0]);
+                            console.log('this >>> ',this);
+                            console.log('attrs >>> '   , attrs);
+                            console.log('element[0].previousElementSibling >>> '   , element[0].previousElementSibling);
+                            
+                            //------------------------------------------------------------------------------------
+                            // 【angular.element】 https://docs.angularjs.org/api/ng/function/angular.element
+                            let btnTag = element[0];
+                            console.info(' angular.element(this).parent().find("input")[0].value >>>' ,  
+                                                        angular.element(this).parent().find('input')[0].value );
+                            //------------------------------------------------------------------------------------
+
+                            let inputTag = element[0].previousElementSibling;
+                            console.log('inputTag >>> ' , inputTag);
+                            console.log('inputTag.value >>> ' , inputTag.value);
+
+                            //--------------------------------------------------
+                            // 將input中的value放到scope中，供controller使用
+                            //--------------------------------------------------
+                            scope.myMessages = { msgToAlert : inputTag.value }; // 故意用物件形式，爽而已！
+                            console.log('scope >>> '   , scope);
+                        })
+                    },
+                }
+            });
+
+        </script>
+    </body>
+</html>
