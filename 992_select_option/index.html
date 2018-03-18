@@ -3,12 +3,50 @@
     <head>
         <meta charset="utf-8"/>
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+        <script src="./angularJS/modules/myModule01.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+        <style>
+            .myBorder {
+                /* border: dashed 1px blue; */
+                margin-top: 1cm;
+            }
+        </style>
     </head>
-    <body>
+    <body ng-app="myApp" class="container">
 
-        <!-- <script type="text/javascript" src="../assest/js/angularJS_1/angular_1_2.js"></script> -->
-        <script>
 
-        </script>
+        <div class="input-group mb-3 myBorder" ng-controller="BusRouteNameController" ng-init="_getAllCityNameChinese()">
+            <div class="input-group-prepend">
+                <button class="btn btn-outline-danger" type="button">查詢公車路線</button>
+            </div>
+
+            <br>
+
+            <select class="custom-select" ng-model="selectedOption" 
+                 ng-options="city.name for city in allCityNameChineseArray">
+            </select>
+        </div>
+
+        <hr>
+        <hr>
+        <div class="container">
+            <h2>參考資料</h2>
+            <table class="table table-striped table-dark">
+                <tbody>
+                    <tr>
+                        <th scope="row">ng-options</th>
+                        <td>https://ithelp.ithome.com.tw/articles/10135776</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">option初始值</th>
+                        <td>https://stackoverflow.com/questions/18194255/how-to-have-a-default-option-in-angular-js-select-box</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">點option時內容突然消失</th>
+                        <td>https://stackoverflow.com/questions/15816400/angularjs-select-box-options-disappear-when-an-item-is-selected</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </body>
 </html>
