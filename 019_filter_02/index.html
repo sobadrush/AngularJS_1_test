@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+        <script src="./index.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/solid.css" integrity="sha384-v2Tw72dyUXeU3y4aM2Y0tBJQkGfplr39mxZqlTBDUZAb9BGoC40+rdFCG0m10lXk" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/fontawesome.css" integrity="sha384-q3jl8XQu1OpdLgGFvNRnPdj5VIlCvgsDQTQB6owSOHWlAurxul7f+JpUOVdAiJ5P" crossorigin="anonymous">
+        <style>
+            .myOrderColor {
+                color : red;
+            }
+        </style>
+    </head>
+    <body ng-app="myApp" >
+
+        <div class="container">
+            <nav class="navbar navbar-light">
+                <form class="form-inline">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"
+                        ng-model="searchTarget">
+                    <!-- <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"
+                        ng-model="searchTarget.id"> -->
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                </form>
+            </nav>
+        </div>
+
+        <div class="container" ng-controller="ProductController">
+            <table class="table table-striped" border="1">
+                <thead>
+                    <tr class="table-info">
+                        <th scope="col">#</th>
+                        <th scope="col" ng-click="changeOrder('id')"    >產品編號&nbsp;<i class="fas fa-angle-down" ng-class="{ 'fa-angle-up' : orderSymbol == '' , 'myOrderColor' : orderByPropertyStr == 'id' }" ></i></th><!-- <i class="fas fa-angle-up"></i> -->
+                        <th scope="col" ng-click="changeOrder('name')"  >產品名稱&nbsp;<i class="fas fa-angle-down" ng-class="{ 'fa-angle-up' : orderSymbol == '' , 'myOrderColor' : orderByPropertyStr == 'name'  }" ></i></th>
+                        <th scope="col" ng-click="changeOrder('price')" >產品價格&nbsp;<i class="fas fa-angle-down" ng-class="{ 'fa-angle-up' : orderSymbol == '' , 'myOrderColor' : orderByPropertyStr == 'price'  }" ></i></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="item in productData | filter : { price : searchTarget } | orderBy : orderSymbol + orderByPropertyStr " ><!-- 負id → DESC -->
+                    <!-- <tr ng-repeat="item in productData | filter : { price : searchTarget } | orderBy : 'id' : true " > --><!--  If true, reverse the sorting order. -->
+                        <th scope="row">{{ $index + 1 }}</th>
+                        <td>{{item.id}}</td>
+                        <td>{{item.name}}</td>
+                        <td>{{item.price | currency : " TWD$ " : 1 }}</td>
+                        <!-- <td>{{item.price | number : 0 | currency : " TWD$ " }}</td> -->
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <br><br><br>
+
+        <div class="container">
+            <h1 style="font-family:微軟正黑體;">參考</h1>
+            <table class="table table-striped table-dark">
+                <tbody>
+                    <tr class="danger">
+                        <th scope="row">orderBy API</th>
+                        <td>https://docs.angularjs.org/api/ng/filter/orderBy</td>
+                    </tr>
+                    <tr class="danger">
+                        <th scope="row">currency API</th>
+                        <td>https://docs.angularjs.org/api/ng/filter/currency</td>
+                    </tr>
+                    <tr class="danger">
+                        <th scope="row">currency 小數處理</th>
+                        <td>https://hairui219.gitbooks.io/learning_angular/content/zh/chapter04_7.html</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </body>
+</html>
