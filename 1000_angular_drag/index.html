@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <!-- <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script> -->
+        <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.min.js"></script>
+        <script src="assest/js/ng_drag_drop_suit/angular-drag-and-drop-lists.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" crossorigin="anonymous">
+        <link rel="stylesheet" href="assest/css/dragBox.css">
+    </head>
+    <body class="container" ng-app="demo">
+
+        <h1>Demo: Simple Lists</h1>
+
+        <div class="alert alert-success">
+            <strong>Instructions:</strong>
+            Drag &amp; drop the list items to move them around, or just click to select them.
+            If that's too boring, check out the <a href="#/nested">nested container demo</a>
+        </div>
+        
+        <div class="simpleDemo row" ng-controller="SimpleDemoController" >
+        
+            <div class="col-md-8">
+                <div class="row">
+                    <div ng-repeat="(listName, list) in models.lists" class="col-md-6">
+                        <div class="panel panel-info">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">List {{listName}}</h3>
+                            </div>
+                            <div class="panel-body" ng-include="'assest/template/simple.html'"></div>
+                        </div>
+                    </div>
+                </div>
+        
+                <!-- <div view-source="simple"></div> -->
+
+                <div class="row">
+                    <h1 style="font-family:微軟正黑體;">參考</h1>
+                    <table class="table table-striped table-dark">
+                        <tbody>
+                            <tr class="danger">
+                                <th scope="row">套件gitHub</th>
+                                <td>https://github.com/marceljuenemann/angular-drag-and-drop-lists</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        
+            <div class="col-md-4">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Generated Model</h3>
+                    </div>
+                    <div class="panel-body">
+                        <pre class="code">{{modelAsJson}}</pre>
+                    </div>
+                </div>
+            </div>
+        
+        </div>
+
+        <script>
+            // 【ng拖拉套件】https://github.com/marceljuenemann/angular-drag-and-drop-lists
+
+            var myApp =  angular.module("demo", ['dndLists']/*注入套件module*/);
+            
+            myApp.controller("SimpleDemoController", function($scope) {
+                    $scope.models = {
+                        selected : null,
+                        lists    : { "A": [] , "B": [] }
+                    };
+
+                    // Generate initial model
+                    for (var i = 1; i <= 3; ++i) {
+                        $scope.models.lists.A.push( { label : "Item A" + i } );
+                        $scope.models.lists.B.push( { label : "Item B" + i } );
+                    }
+
+                    // Model to JSON for demo purpose
+                    $scope.$watch('models', function(model) {
+                        $scope.modelAsJson = angular.toJson(model, true);
+                    }, true);
+
+                });
+
+        </script>
+    </body>
+</html>
