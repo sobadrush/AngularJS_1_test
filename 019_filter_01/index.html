@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+        <script src="./index.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    </head>
+    <body ng-app="myApp" >
+
+        <div class="container">
+            <nav class="navbar navbar-light bg-light">
+                    <form class="form-inline">
+                        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"
+                            ng-model="searchTarget">
+                        <!-- <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"
+                            ng-model="searchTarget.id"> -->
+                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                    </form>
+            </nav>
+        </div>
+
+        <div class="container" ng-controller="ProductController">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">產品編號</th>
+                    <th scope="col">產品名稱</th>
+                    <th scope="col">產品價格</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- <tr ng-repeat="item in productData | filter : searchTarget" > -->
+                    <tr ng-repeat="item in productData | filter : { price : searchTarget }" ><!-- 只根據price搜尋 -->
+                    <!-- <tr ng-repeat="item in productData | filter : searchTarget " > --> <!-- 搭配 ng-model=" searchTarget.id " -->
+                        <th scope="row">{{ $index + 1 }}</th>
+                        <td>{{item.id}}</td>
+                        <td>{{item.name}}</td>
+                        <td>{{item.price | currency : " TWD$ " }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <script>
+
+        </script>
+    </body>
+</html>
