@@ -39,7 +39,7 @@
             <div ng-controller="SelfCtrl">
                 <!--自己-->
 
-                <button type="button" class="btn btn-danger">測試事件傳值</button>
+                <button type="button" class="btn btn-danger" ng-click="doClick()" >測試事件傳值</button>
 
                 <div ng-controller="ChildCtrl">
                     <!--子级-->
@@ -60,7 +60,6 @@
         let myApp = angular.module('myApp', []);
 
         myApp.controller('SelfCtrl', ['$rootScope', '$scope', function ($rootScope, $scope) {
-
             // SeldCtrl中要傳遞的資料
             $scope.empData = {
                 empName: 'Roger',
@@ -75,8 +74,11 @@
 
             $scope.doClick = function () {
                 $scope.$broadcast('to-child'/*自訂事件*/, myData); // 向子代廣播
+                console.log('111');
                 $scope.$emit('to-parent'/*自訂事件*/, myData); // 向父代發射
+                console.log('222');
                 $rootScope.$emit("customerEvent"/*自訂事件*/, "list");// $rootScope 向父/子都可接到值
+                console.log('333');
             }
 
         }]);
