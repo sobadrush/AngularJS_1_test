@@ -23,6 +23,8 @@
             <div class="col-md-8">
                 <div class="row">
                     <div ng-repeat="(listName, list) in models.lists" class="col-md-6">
+                        <p>listName = {{listName}}</p>
+                        <p>list     = {{list}}</p>
                         <div class="panel panel-info">
                             <div class="panel-heading">
                                 <h3 class="panel-title">List {{listName}}</h3>
@@ -79,10 +81,10 @@
 
                     // Model to JSON for demo purpose
                     $scope.$watch('models', function(model) {
-                        $scope.modelAsJson = angular.toJson(model, true);
-                    }, true);
+                        $scope.modelAsJson = angular.toJson(model, true/*format JSON*/);
+                    }, true/*Deep Watch*/);
 
-                });
+            });
 
         </script>
     </body>
