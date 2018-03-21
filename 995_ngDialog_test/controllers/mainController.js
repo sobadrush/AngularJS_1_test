@@ -34,6 +34,14 @@ angular.module('myApp')
                 className: 'ngdialog-theme-default',
                 scope: $myScope,
                 controller: 'pupUpDialogController',
+                //-------------------------------------------------------------- 可用 data 屬性傳值給Dialog
+                // 傳入的值可在 dialog 的 $scope.ngDialogData 屬性取得
+                //-------------------------------------------------------------- 可用 data 屬性傳值給Dialog
+                // data : { 'testMsg_01':'Fuck you' },
+                data : [
+                    { 'testMsg_01' : 'Fuck you' },
+                    { 'testMsg_02' : '幹你娘' }
+                ]
             });
         }
         
