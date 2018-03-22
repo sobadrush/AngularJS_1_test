@@ -5,11 +5,12 @@
     <meta charset="utf-8" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+    <link rel="stylesheet" href="./assest/css/splitScreen.css">
     <style>
         /* LIST #2 */
         #list2 { width:500px; }
-        #list2 ol { font-style:italic; font-family:Georgia, Times, serif; font-size:24px; color:#bfe1f1;  }
-        #list2 ol li p { padding:8px; font-style:normal; font-family:Arial; font-size:20px; color:#eee; border-left: 1px solid #999; }
+        #list2 ol { font-style:italic; font-family:Georgia, Times, serif; font-size:22px; color:#bfe1f1;  }
+        #list2 ol li p { padding:8px; font-style:normal; font-family:Arial; font-size:18px; color:#eee; border-left: 1px solid #999; }
         #list2 ol li p em { display:block; }
         #list2 em { color:firebrick ; font-size : 2em }
         #list2 em.ref { color:rgb(13, 117, 44) ; font-size : 2em }
@@ -17,45 +18,56 @@
     </style>
 </head>
 
-<body ng-app="myApp" style="background:rgb(0, 0, 0)">
-        <div id="list2">
-            <ol>
-                <li><p><em>$scope.$emit</em> 只能向父輩(包含爺輩) 傳遞 event 與 data </p></li>
-                <li><p><em>$scope.$broadcast</em> 只能向子代(包含孫代)傳遞 event 與 data </p></li>
-                <li><p><em>$scope.$on</em> 用於接收event與data </p></li>
-                <li><p><em class='root'>$rootScope.$emit</em> 任意處皆可傳/接 </p></li>
-                <li><p><em class='root'>$rootScope.$broadcast</em> 任意處皆可傳/接 </p></li>
-                <li><p><em class='root'>$rootScope.$on</em> 任意處皆可傳/接 </p></li>
-                <li><p><em class='ref'>參考(1)</em> http://www.cnblogs.com/CraryPrimitiveMan/p/3679552.html </p></li>
-                <li><p><em class='ref'>參考(2)</em> http://corpus.hubwiz.com/2/angularjs/22701497.html </p></li>
-            </ol>
-        </div>
+<body ng-app="myApp" class="container" style="background:rgb(0, 0, 0)">
 
-    <div ng-controller="grandFatherCtrl">
-        <!--爺级-->
-        <div ng-controller="ParentCtrl">
-            <!--父级-->
-
-            <div ng-controller="SelfCtrl">
-                <!--自己-->
-
-                <button type="button" class="btn btn-danger" ng-click="doClick()" >測試事件傳值</button>
-
-                <div ng-controller="ChildCtrl">
-                    <!--子级-->
-                    <div ng-controller="grandSonCtrl">
-
-                    </div>
-                </div>
-
+    <div class="split left">
+        <div class="centered">
+            <h2 style="font-family: 微軟正黑體; color:aqua">說明</h2>
+            <div id="list2">
+                <ol>
+                    <li><p><em>$scope.$emit</em> 只能向父輩(包含爺輩) 傳遞 event 與 data </p></li>
+                    <li><p><em>$scope.$broadcast</em> 只能向子代(包含孫代)傳遞 event 與 data </p></li>
+                    <li><p><em>$scope.$on</em> 用於接收event與data </p></li>
+                    <li><p><em class='root'>$rootScope.$emit</em> 任意處皆可傳/接 </p></li>
+                    <li><p><em class='root'>$rootScope.$broadcast</em> 任意處皆可傳/接 </p></li>
+                    <li><p><em class='root'>$rootScope.$on</em> 任意處皆可傳/接 </p></li>
+                    <li><p><em class='ref'>參考(1)</em> http://www.cnblogs.com/CraryPrimitiveMan/p/3679552.html </p></li>
+                    <li><p><em class='ref'>參考(2)</em> http://corpus.hubwiz.com/2/angularjs/22701497.html </p></li>
+                </ol>
             </div>
-
-            <div ng-controller="BroCtrl"></div>
-            <!--兄弟级-->
-
+        </div>
+        </div>
+        
+        <div class="split right">
+        <div class="centered">
+            <h2>Click Me!</h2>
+            <div class="col-md-6"  ng-controller="grandFatherCtrl" >
+                    <!--爺级-->
+                <div ng-controller="ParentCtrl">
+                    <!--父级-->
+        
+                    <div ng-controller="SelfCtrl">
+                        <!--自己-->
+        
+                        <button type="button" class="btn btn-danger" ng-click="doClick()" >測試事件傳值</button>
+        
+                        <div ng-controller="ChildCtrl">
+                            <!--子级-->
+                            <div ng-controller="grandSonCtrl">
+        
+                            </div>
+                        </div>
+        
+                    </div>
+        
+                    <div ng-controller="BroCtrl"></div>
+                    <!--兄弟级-->
+        
+                </div>
+            </div>
         </div>
     </div>
-
+    
     <script>
         let myApp = angular.module('myApp', []);
 
@@ -72,19 +84,25 @@
                 empAge: 40
             };
 
+
+            /*********************************
+             *======= 自行交替mark測試 =======*
+             *********************************/ 
             $scope.doClick = function () {
-                $scope.$broadcast('to-child'/*自訂事件*/, myData); // 向子代廣播
-                console.log('111');
-                $scope.$emit('to-parent'/*自訂事件*/, myData); // 向父代發射
-                console.log('222');
-                $rootScope.$emit("customerEvent"/*自訂事件*/, "list");// $rootScope 向父/子都可接到值
-                console.log('333');
+                // $scope.$broadcast('to-child'/*自訂事件*/, myData); // 向子代廣播
+                // console.log('>>> 111 <<<');
+                // $scope.$emit('to-parent'/*自訂事件*/, myData); // 向父代發射
+                // console.log('>>> 222 <<<');
+                $rootScope.$emit("customerEvent"/*自訂事件*/, "【由 $rootScope.$emit() 傳遞的訊息】");// $rootScope 向父/子都可接到值
+                console.log('>>> 333 <<<');
+                // $rootScope.$broadcast("customerEvent"/*自訂事件*/, "【由 $rootScope.$broadcast() 傳遞的訊息】");// $rootScope 向父/子都可接到值
+                // console.log('>>> 444 <<<');
             }
 
         }]);
 
         // 父代控制器
-        myApp.controller('ParentCtrl', function ($scope) {
+        myApp.controller('ParentCtrl', function ($rootScope, $scope) {
             $scope.$on('to-parent', function (event, data) {
                 console.log('ParentCtrl event >>> ', event); //父级能得到值
                 console.log('ParentCtrl data >>> ', data); //父级能得到值
@@ -92,15 +110,25 @@
             $scope.$on('to-child', function (event, data) {
                 console.log('ParentCtrl data >>> ', data); //子级得不到值
             });
+            //----------------------------------------
+            //----------------------------------------            
+            $rootScope.$on("customerEvent", function (event, data) {
+                console.log('父代 customerEvent data >>> ', data);
+            });
         });
 
         // 子代控制器
-        myApp.controller('ChildCtrl', function ($scope) {
+        myApp.controller('ChildCtrl', function ($rootScope, $scope) {
             $scope.$on('to-parent', function (event, data) {
                 console.log('ChildCtrl data >>> ', data); //父级得不到值
             });
             $scope.$on('to-child', function (event, data) {
                 console.log('ChildCtrl data >>> ', data); //子级能得到值
+            });
+            //----------------------------------------
+            //----------------------------------------
+            $rootScope.$on("customerEvent", function (event, data) {
+                console.log('子代 customerEvent data >>> ', data);
             });
         });
 
@@ -112,9 +140,10 @@
             $scope.$on('to-child', function (event, data) {
                 console.log('BroCtrl data >>> ', data); //平级得不到值  
             });
-
+            //----------------------------------------
+            //----------------------------------------
             $rootScope.$on("customerEvent", function (event, data) {
-                console.log('BroCtrl customerEvent data >>> ', data);
+                console.log('兄弟 customerEvent data (※兄弟級只收得到 $rootScope. $emit() 或 $broadcast() 的訊息！)>>> ', data);
             });
         });
 
@@ -126,19 +155,25 @@
             $scope.$on('to-child', function (event, data) {
                 console.log('grandFatherCtrl data >>> ', data); //取不到值  
             });
-
-           $rootScope.$on("customerEvent", function (event, data) {
-                console.log('grandFatherCtrl customerEvent data >>> ', data);
+            //----------------------------------------
+            //----------------------------------------
+            $rootScope.$on("customerEvent", function (event, data) {
+                console.log('爺級 customerEvent data >>> ', data);
             });
         });
 
         // 孫級控制器
-        myApp.controller('grandSonCtrl', function ($scope) {
+        myApp.controller('grandSonCtrl', function ($rootScope, $scope) {
             $scope.$on('to-parent', function (event, data) {
                 console.log('grandSonCtrl data >>> ', data); // 取不到值 
             });
             $scope.$on('to-child', function (event, data) {
                 console.log('grandSonCtrl data >>> ', data); // 孫級可取到值 
+            });
+            //----------------------------------------
+            //----------------------------------------
+            $rootScope.$on("customerEvent", function (event, data) {
+                console.log('孫級 customerEvent data >>> ', data);
             });
         });
     </script>
