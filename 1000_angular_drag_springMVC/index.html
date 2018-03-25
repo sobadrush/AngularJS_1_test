@@ -7,6 +7,9 @@
         <script src="assest/js/ng_drag_drop_suit/angular-drag-and-drop-lists.js"></script>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" crossorigin="anonymous">
         <link rel="stylesheet" href="assest/css/dragBox.css">
+        <script src="assest/angularJS/modules/mainModule.js"></script>
+        <script src="assest/angularJS/services/deptService.js"></script>
+        <script src="assest/angularJS/controllers/simpleDemoController.js"></script>
     </head>
     <body class="container" ng-app="demo">
 
@@ -52,6 +55,7 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <h3 class="panel-title">Generated Model</h3>
+                        <button type="button" class="btn btn-danger" ng-click="doSubmit()">查詢</button>
                     </div>
                     <div class="panel-body">
                         <pre class="code">{{modelAsJson}}</pre>
@@ -63,27 +67,6 @@
 
         <script>
             // 【ng拖拉套件】https://github.com/marceljuenemann/angular-drag-and-drop-lists
-
-            var myApp =  angular.module("demo", ['dndLists']/*注入套件module*/);
-            
-            myApp.controller("SimpleDemoController", ['$scope', function($scope) {
-                    $scope.models = {
-                        selected : null,
-                        lists    : { "unSubmitData": [] , "submitData": [] }
-                    };
-
-                    // Generate initial model
-                    for (let deptno = 10 ; deptno <= 40 ; deptno += 10) {
-                        $scope.models.lists['unSubmitData'].push( { DeptNo : deptno } );
-                    }
-
-                    // Model to JSON for demo purpose
-                    $scope.$watch('models', function(model) {
-                        $scope.modelAsJson = angular.toJson(model, true/*format JSON*/);
-                    }, true /*Deep Watch*/ );
-
-            }]);
-
         </script>
     </body>
 </html>
