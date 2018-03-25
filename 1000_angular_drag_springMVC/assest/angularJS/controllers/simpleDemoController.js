@@ -7,6 +7,11 @@ myApp.controller("SimpleDemoController", ['$scope', 'DeptService', function ($sc
         }
     };
 
+    $scope.isEagerCk = false;// isEager的checkBox初始值(若沒設會是undefined)
+    // $scope.$watch('isEagerCk', function (newVal, oldVal) {
+    //     console.info('newVal >>> ', newVal, ' , oldVal >>> ', oldVal);
+    // }, false);
+
     // Generate initial model
     for (let deptno = 10; deptno <= 40; deptno += 10) {
         $scope.models.lists['unSubmitData'].push({
@@ -39,10 +44,11 @@ myApp.controller("SimpleDemoController", ['$scope', 'DeptService', function ($sc
         });
         // console.log('deptIdArray >>> ' , deptIdArray);
 
-        let isEager = true;
+        let isEager = $scope.isEagerCk;
         deptService.getDeptAndBelowEmps(isEager, deptIdArray)
             .then(function (cbData) {
                 console.info('cbData', cbData);
+                $scope.deptDataCB = cbData;
             });
 
     };
