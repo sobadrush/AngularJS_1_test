@@ -55,7 +55,7 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <h3 class="panel-title">Generated Model</h3>
-                        <button type="button" class="btn btn-danger" ng-click="doSubmit()">查詢</button>
+                        <button type="button" class="btn btn-dark" ng-class="{'btn-danger' : hasPrepared }" ng-disabled="!hasPrepared" ng-click="doSubmit()">查詢</button>
                     </div>
                     <div class="panel-body">
                         <pre class="code">{{modelAsJson}}</pre>
