@@ -38,6 +38,31 @@
                 </div>
                 <!-- <div view-source="simple"></div> -->
 
+                <!-- ============================================ -->
+                <h1 style="font-family:微軟正黑體;">查詢結果：</h1>
+                <table class="table table-striped">
+                    <thead>
+                        <tr class="warning">
+                            <th scope="col">#</th>
+                            <th scope="col">deptNo</th>
+                            <th scope="col">deptName</th>
+                            <th scope="col">deptLoc</th>
+                            <th scope="col">部門員工</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="deptvo in deptDataCB" >
+                            <th scope="row">{{ $index + 1 }}</th>
+                            <td>{{ deptvo.deptNo }}</td>
+                            <td>{{ deptvo.deptName }}</td>
+                            <td>{{ deptvo.deptLoc }}</td>
+                            <td>
+                                <p ng-repeat=" empvo in deptvo.emps " >{{ empvo.empName }}</p>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
                 <div class="row">
                     <h1 style="font-family:微軟正黑體;">參考</h1>
                     <table class="table table-striped table-dark">
@@ -49,13 +74,27 @@
                         </tbody>
                     </table>
                 </div>
+
             </div>
         
+
             <div class="col-md-4">
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <h3 class="panel-title">Generated Model</h3>
                         <button type="button" class="btn btn-dark" ng-class="{'btn-danger' : hasPrepared }" ng-disabled="!hasPrepared" ng-click="doSubmit()">查詢</button>
+                   
+                        <p></p>
+                        <!-- BootStrap CheckBox -->
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text">
+                                    <input type="checkbox" ng-model="isEagerCk" aria-label="Checkbox for following text input">
+                                    <span ng-style="{'color': (isEagerCk == true) ? 'red' : 'gray' }">isEager</span>   <span>{{isEagerCk}}</span>
+                                </div>
+                            </div>
+                        </div>
+                        
                     </div>
                     <div class="panel-body">
                         <pre class="code">{{modelAsJson}}</pre>
