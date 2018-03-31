@@ -39,7 +39,8 @@
             </thead>
             <tbody>
                 <tr ng-repeat="i in range.slice(0, 10) track by $index" 
-                    ng-class="{'table-primary': $odd , 'table-warning': $even , 'table-danger' : $index == mySelectedIndex  }"
+                    ng-class-odd="'table-primary'" ng-class-even="'table-warning'"
+                    ng-class="{ 'table-danger' : $index == mySelectedIndex  }"
                     ng-mouseenter="changeMouseInFlag( $index );" >
                     <th scope="row">{{ $index }}</th>
                     <th scope="row">{{ $id }}</th>
