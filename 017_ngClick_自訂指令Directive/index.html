@@ -38,6 +38,13 @@
             <h2>doClick002()</h2>
             <input type="text" value="測試input訊息"/>
             <button type="button" class="btn btn-primary" ng-click="doClick002()" sibs>測試2</button>
+
+            <br><br>
+
+            <h2>doClick003()</h2>
+            <button type="button" class="btn btn-success" ng-click="doClick003($event)">測試3</button>
+            <p style="color:red; font-size: 1cm">{{ myStatus }}</p>
+
         </div>
 
 
@@ -66,17 +73,31 @@
             let myApp = angular.module('myApp',[]);
             myApp.controller('FirstController', ['$rootScope', '$scope', function( $rootScope, $scope ) {
 
+                ($scope.init = function(){
+                    $scope.myStatus = false;
+                    alert('init!!!');
+                })();
+
                 $scope.doClick001 = function(_event) {
                     console.info('$event >>> ', _event);
                     let btnTag = _event.target;
                     console.info('$event.target >>> ', btnTag);
                     alert('Message = ' + btnTag.innerText);
-                }
+                };
 
                 $scope.doClick002 = function() {
                     console.log('doClick002 >>> ' , $scope );
                     alert( $scope.myMessages['msgToAlert'] );
-                }
+                };
+
+                $scope.doClick003 = function(_event) {
+                    console.log('doClick003 >>> ' , $scope );
+                    $scope.myStatus = !$scope.myStatus;
+                    let btnTag = _event.target;
+                    let jqueryObj_Btn = angular.element(btnTag); // 使html dom成為jquery物件
+                    jqueryObj_Btn.html('測試3 , ' + '切換狀態為：' + !$scope.myStatus );
+                };
+
             }]);
 
             // 【 自訂 Directive 】
