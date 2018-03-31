@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <!-- <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script> -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.8/angular.min.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="./assest/css/myStyle.css">
+    </head>
+    <body ng-app="myApp" >
+
+        <div class="container">
+            <table id="table-explain" class="table"> 
+                <thead>
+                    <tr class="table-primary">
+                        <th scope="col">#</th>
+                        <th scope="col">指令</th>
+                        <th scope="col">說明</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row">1</th>
+                        <td>ng-src</td>
+                        <td>類似ng-bind，解決js加載完成前圖片url會直接show在頁面上的問題</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">2</th>
+                        <td>ng-show</td>
+                        <td>與 ng-hide 對應，dom物件一直存在，只是切換是否顯示</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">3</th>
+                        <td>ng-switch</td>
+                        <td>動態地 生成/移除 DOM</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">4</th>
+                        <td>ng-if</td>
+                        <td>動態地 生成/移除 DOM</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div ng-controller="myController" class="container test1" style="margin-top: 2cm;">
+                <h2>測試 ng-show </h2>
+                <button type="button" ng-click="doClick001()" class="btn btn-dark">Click</button>
+                <code ng-non-bindable>{{ myStatus }} = </code> {{ myStatus }}
+                <div>
+                    <img ng-show="myStatus == 1" ng-src="http://web-ss.b0.upaiyun.com/article/images/20171218/new/1513586886534.jpg"/>            
+                    <img ng-show="myStatus == 2" ng-src="https://img1.pixpo.net/img/84/c/0imvgcpzs6/sg_0IMvgcPzs6.jpg"/>            
+                    <img ng-show="myStatus == 3" ng-src="http://i0.wp.com/inews.gtimg.com/newsapp_match/0/1190000568/0"/>   
+                </div>         
+        </div>
+
+        <div ng-controller="myController" class="container test1" style="margin-top: 2cm;">
+            <h2>測試 ng-switch </h2>
+            <button type="button" ng-click="doClick001()" class="btn btn-dark">Click</button>
+            <code ng-non-bindable>{{ myStatus }} = </code> {{ myStatus }}
+
+            <div ng-switch="myStatus">
+                <img ng-switch-when="1" ng-src="http://web-ss.b0.upaiyun.com/article/images/20171218/new/1513586886534.jpg"/>            
+                <img ng-switch-when="2" ng-src="https://img1.pixpo.net/img/84/c/0imvgcpzs6/sg_0IMvgcPzs6.jpg"/>            
+                <img ng-switch-when="3" ng-src="http://i0.wp.com/inews.gtimg.com/newsapp_match/0/1190000568/0"/>            
+            </div>
+        </div>
+
+        <div ng-controller="myController" class="container test1" style="margin-top: 2cm;">
+            <h2>測試 ng-if </h2>
+            <button type="button" ng-click="doClick001()" class="btn btn-dark">Click</button>
+            <code ng-non-bindable>{{ myStatus }} = </code> {{ myStatus }}
+            <div>
+                <img ng-if="myStatus == 1" ng-src="http://web-ss.b0.upaiyun.com/article/images/20171218/new/1513586886534.jpg"/>            
+                <img ng-if="myStatus == 2" ng-src="https://img1.pixpo.net/img/84/c/0imvgcpzs6/sg_0IMvgcPzs6.jpg"/>            
+                <img ng-if="myStatus == 3" ng-src="http://i0.wp.com/inews.gtimg.com/newsapp_match/0/1190000568/0"/>   
+            </div>         
+        </div>
+
+        <script>
+            var myApp = angular.module('myApp', [] );
+
+            myApp.controller('myController', ['$scope', function($scope) {
+                
+                ($scope.init = function(){
+                    console.log('...init...')
+                    $scope.myStatus = 0;
+                })();
+
+                $scope.doClick001 = function(){
+                    $scope.myStatus++;
+                    $scope.myStatus = $scope.myStatus > 3 ? 1 : $scope.myStatus;
+                };
+
+            }]);
+
+        </script>
+    </body>
+</html>

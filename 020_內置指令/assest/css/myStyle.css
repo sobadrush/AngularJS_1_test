@@ -1,0 +1,17 @@
+img {
+    margin-top: 0.5cm;
+}
+
+h2 {
+    font-family: monospace;
+}
+
+div.test1 {
+    border-radius: 25px;
+    border: 2px solid #73AD21;
+    padding: 20px;
+}
+
+#table-explain tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
