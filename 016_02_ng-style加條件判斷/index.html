@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+    <style>
+        .myBorder {
+            border: 1px dashed red;
+        }
+
+        div {
+            padding: 5px 5px 5px 5px;
+        }
+    </style>
+</head>
+
+<body ng-app="myApp" class="container">
+    <h1 ng-style=" !!true && {'color' : 'blue'} ">【ng-style 加條件判斷】</h1>
+    <code style="font-size: 1cm;">
+        ng-style=" !!true && {'color' : 'blue'} 
+    </code>
+
+    <br>
+
+    <div ng-controller="firstController" ng-style="{'border': '1px solid purple'}">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">$index</th>
+                    <th scope="col">$id</th>
+                    <th scope="col">$even</th>
+                    <th scope="col">$odd</th>
+                    <th scope="col">$first</th>
+                    <th scope="col">$middle</th>
+                    <th scope="col">$last</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="i in range.slice(0, 10) track by $index" 
+                    ng-class="{'table-primary': $odd , 'table-warning': $even , 'table-danger' : $index == mySelectedIndex  }"
+                    ng-mouseenter="changeMouseInFlag( $index );" >
+                    <th scope="row">{{ $index }}</th>
+                    <th scope="row">{{ $id }}</th>
+                    <td scope="row">{{ $even }}</td>
+                    <td scope="row">{{ $odd }}</td>
+                    <td ng-style=" ($first==true) && { 'background' : 'rgb(20, 207, 20)' }" >{{ $first }}</td>
+                    <td ng-style=" ($middle==true) && { 'background' : 'rgb(20, 207, 20)' }" >{{ $middle }}</td>
+                    <td ng-style=" ($last==true) && { 'background' : 'rgb(20, 207, 20)' }" >{{ $last }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div ng-style="{'border': '1px solid brown'}">
+        <table class="table table-striped table-dark">
+            <tbody>
+                <tr>
+                    <th scope="row">ng-style with a conditional expression</th>
+                    <td>https://stackoverflow.com/questions/19375695/angular-ng-style-with-a-conditional-expression</td>
+                </tr>
+                <tr>
+                    <th scope="row">ng-style with a conditional expression</th>
+                    <td>https://stackoverflow.com/questions/31917545/ng-style-with-condition/31917671</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <script>
+        // 參考(1) : https://docs.angularjs.org/api/ng/directive/ngRepeat
+        // 參考(2) : https://ask.helplib.com/angularjs/post_243715
+        let myApp = angular.module('myApp', []);
+
+        myApp.controller('firstController', ['$rootScope', '$scope', function ($rootScope, $scope) {
+
+            const MAX_REPEATS = 20;
+            $rootScope.range = new Array(MAX_REPEATS); // 為了在各處都可用Line33的寫法，定義在$rootScope中
+
+            $scope.empData = [
+                { empName: 'Roger' , empAge: 18 , empSex: 'male'   },
+                { empName: 'Kelly' , empAge: 23 , empSex: 'female' },
+                { empName: 'Linda' , empAge: 8  , empSex: 'female' },
+            ];
+
+            $scope.calcSquare = function (_num) {
+                return _num * _num;
+            }
+
+            // 【改變 <tr> hover顏色】
+            $scope.changeMouseInFlag = function( _$index ){
+                $scope.mySelectedIndex = _$index;
+            }
+
+        }]);
+    </script>
+</body>
+
+</html>
