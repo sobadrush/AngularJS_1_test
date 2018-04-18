@@ -84,6 +84,9 @@
                 empAge: 40
             };
 
+            $scope.helloFunc = function(){
+                alert('Hello AngularJS 1');
+            }
 
             /*********************************
              *======= 自行交替mark測試 =======*
@@ -93,8 +96,12 @@
                 // console.log('>>> 111 <<<');
                 // $scope.$emit('to-parent'/*自訂事件*/, myData); // 向父代發射
                 // console.log('>>> 222 <<<');
-                $rootScope.$emit("customerEvent"/*自訂事件*/, "【由 $rootScope.$emit() 傳遞的訊息】");// $rootScope 向父/子都可接到值
-                console.log('>>> 333 <<<');
+                // $rootScope.$emit("customerEvent"/*自訂事件*/, "【由 $rootScope.$emit() 傳遞的訊息】");// $rootScope 向父/子都可接到值
+                // console.log('>>> 333 <<<');
+
+                $rootScope.$emit("customerEvent"/*自訂事件*/, $scope.helloFunc );// $rootScope 向父/子都可接到值
+                console.log('>>> 333 測試 $emit 傳遞 function <<<');
+
                 // $rootScope.$broadcast("customerEvent"/*自訂事件*/, "【由 $rootScope.$broadcast() 傳遞的訊息】");// $rootScope 向父/子都可接到值
                 // console.log('>>> 444 <<<');
             }
@@ -114,6 +121,7 @@
             //----------------------------------------            
             $rootScope.$on("customerEvent", function (event, data) {
                 console.log('父代 customerEvent data >>> ', data);
+                data(); // 此時 data 是 由$rootScope.$emit過來的function
             });
         });
 
