@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.8/angular.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+
+    <style>
+        img {
+            width: 2cm;
+        }
+    </style>
+
+    <script src="./index.js"></script>
+</head>
+
+<body ng-app="myApp">
+
+    <div ng-controller="firstController">
+
+        <table border="1" class="table table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">empName</th>
+                    <th scope="col">empAge</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="item in empData">
+                    <th scope="row">{{ $index }}</th>
+                    <td>{{ item.empName }}</td>
+                    <td>
+                        <div style="height:200px; width:430px; overflow-y:scroll;">
+                            <img ng-src="{{ item.picUrl }}" style="height:200px; width:200px;">
+                            <img ng-src="{{ item.picUrl }}" style="height:200px; width:200px;">
+                            <img ng-src="{{ item.picUrl }}" style="height:200px; width:200px;">
+                        </div>
+                    </td>
+                    <!-- <td>
+                        <img ng-src="{{ gg.picUrl_01 }}">
+                        <img ng-src="{{ gg.picUrl_02 }}">
+                    </td> -->
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+
+</body>
+
+</html>
