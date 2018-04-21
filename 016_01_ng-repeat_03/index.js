@@ -30,7 +30,7 @@ myApp.controller('firstController', ['$scope', function ($scope) {
         // alert(`_index = ` + _$index);
         // console.log(`_$event`, _$event);
 
-        // 取消 "事件冒泡"
+        // 取消 "事件冒泡"，否則會觸發外層的 cleanArray()，
         if (_$event.stopPropagation) {
             _$event.stopPropagation();
         }
