@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.8/angular.min.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    </head>
+    <body class="container" ng-app="myApp">
+        <h1>測試ng-include</h1>
+        <br>
+
+        <div class="container" ng-controller="firstController">
+            <button type="button" class="btn btn-success" ng-click="toDoraemon()">哆啦A夢</button>
+        </div>
+        <br>
+        <div class="container" ng-controller="secondController">
+            <button type="button" class="btn btn-warning" ng-click="toBigBear()">大雄</button>
+        </div>
+
+        <div class="container" ng-controller="thirdController">
+            <div class="container" ng-include="toUrl"></div>
+        </div>
+       
+        <script>
+            var myApp = angular.module('myApp', []);
+
+            myApp.controller('firstController', ['$scope','$rootScope', function ($scope, $rootScope) {
+                $scope.init = function () {
+                    console.log('=========== CALL firstController init() ===========');
+                };
+                $scope.init();
+
+                $scope.toDoraemon = function () {
+                    $rootScope.toUrl = "./templates/dora.html";
+                };
+            }]);
+
+            myApp.controller('secondController', ['$scope','$rootScope', function ($scope, $rootScope) {
+                $scope.init = function () {
+                    console.log('=========== CALL secondController init() ===========');
+                };
+                $scope.init();
+
+                $scope.toBigBear = function () {
+                    $rootScope.toUrl = "./templates/bear.html";
+                };
+            }]);
+
+            myApp.controller('thirdController', ['$scope','$rootScope', function ($scope, $rootScope) {
+                $scope.init = function () {
+                    console.log('=========== CALL thirdController init() ===========');
+                };
+                $scope.init();
+
+                $rootScope.$watch('toUrl', function (newVal, oldVal) {
+                    console.info(`觸發thirdController的watch`);
+                    console.info('newVal >>> ', newVal, ' , oldVal >>> ', oldVal);
+                    $scope.toUrl = newVal;
+                }, true);
+            }]);
+
+        </script>
+    </body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>雙向綁定測試</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.8/angular.min.js"></script><!-- angularJS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"><!-- bootstrap -->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script><!-- jQuery -->
+    <script src="./index.js"></script>
+</head>
+
+<body class="container" ng-app="myApp">
+    <h1>雙向綁定測試</h1>
+
+    <div class="container" ng-controller="firstController" style="border:solid 1px red;padding:10px;">
+        <h3>成功的(使用ngModel)</h3>
+        輸入訊息：<input type="text" ng-model="message" /> &nbsp;&nbsp; >>> {{ message }}
+        <br>
+    </div>
+
+    <br><br>
+
+    <div class="container" style="border:solid 1px rgb(226, 9, 208);padding:10px;">
+        <h3>純JS寫法</h3>
+        輸入訊息：<input id="myInp" type="text"/> &nbsp;&nbsp; >>> <span id="mysp"></span>
+        <br>
+    </div>
+
+    <script>
+        $(function() {
+            let message = ``;
+            let myInp = document.getElementById('myInp');
+            let mysp = document.getElementById('mysp');
+            myInp.addEventListener('keyup', function(e){
+                // console.log(`this`, this);
+                // console.log('輸入值 = ', this.value);
+                message = this.value;
+                mysp.textContent = message;
+            });
+        });
+    </script>
+
+</body>
+
+</html>
