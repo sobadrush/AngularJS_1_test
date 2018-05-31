@@ -4,7 +4,8 @@ myApp.controller('firstController', ['$scope', function($scope){
 
     $scope.init = function () {
         // alert('init');
-        $scope.imgList = [{ id : 'pic001' , name:'魔人普烏' , url: 'http://s3-ap-northeast-1.amazonaws.com/topicks/article_thumb/25629_original.jpg'}]
+        // $scope.imgList = [{ id : 'pic001' , name:'魔人普烏' , url: 'http://s3-ap-northeast-1.amazonaws.com/topicks/article_thumb/25629_original.jpg'}]
+        $scope.imgList = [{ id : 'pic001' , name:'魔人普烏' , url: './assest/images/普烏.jpg'}]
         $scope.rotDegree = +0;
     };
     $scope.init();
