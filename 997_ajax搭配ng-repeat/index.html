@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script><!-- jQuery -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.8/angular.min.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+        <!-- ============================================= -->
+        <script src="./index.js"></script>
+        <!-- ============================================= -->
+        <style>
+            .row_red {
+                height: 0.5cm;
+                background-color: red;
+            }
+            .row_green {
+                height: 0.5cm;
+                background-color: green;
+            }
+            .row_blue {
+                height: 0.5cm;
+                background-color: blue;
+            }
+            .ng-cloak {
+                display: none !important;
+            }
+        </style>
+    </head>
+    <body ng-app="myApp" class="container">
+
+        <div class="container">
+            <div class="row">
+                <div class="col-1 row_red"></div>
+                <div class="col-10 row_green">
+        
+                </div>
+                <div class="col-1 row_blue"></div>
+            </div>
+        </div>
+
+        <p></p>
+
+        <div class="container" ng-controller="firstController">
+            <div class="row">
+                <div class="col-1"></div>
+                <div class="col-6">
+                    <span style="width: 100%;">
+                        <input class="form-control form-control-lg" type="text" value = "{{ cityName }}"
+                            style="width: 20%; display:inline-block; text-align: center" disabled />&nbsp;&nbsp;
+                        <input class="form-control form-control-lg" type="text" 
+                            style="width: 70%; display:inline-block;" placeholder="請輸入縣市編號" ng-keyup="getCityName( cityId )" value="" ng-model="cityId">
+                    </span>
+                </div>
+                <div class="col-2">
+                    <input type="text" ng-model="_perPagePen" placeholder="輸出筆數">
+                </div>
+                <div class="col-2">
+                    <button type="button" class="btn btn-info" ng-click="queryByCityId( cityId )">查詢縣市</button>
+                </div>
+                <div class="col-1"></div>
+            </div>
+
+            <p></p>
+            <!-- ================== -->
+            <div class="row">
+                <div class="col-1"></div>
+                <div class="col-10">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr class="table-info">
+                                <th scope="col">#流水號</th>
+                                <th scope="col">id</th>
+                                <th scope="col">區名</th>
+                                <th scope="col">郵遞區號</th>
+                                <th scope="col">經緯度</th>
+                                <th scope="col">操作</th>
+                                <th scope="col" style="background:rgba(15, 158, 115, 0.644);">圖片連結 & 縮圖</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="item in townsData | limitTo: _perPagePen track by $index">
+                                <th scope="row" ng-bind="$index + 1"></th>
+                                <th scope="row" ng-bind="item.id"></th>
+                                <td>{{ item.name }}</td>
+                                <td>{{ item.postal }}</td>
+                                <td>{{ item.position }}</td>
+                                <td class="ng-cloak">
+                                    <button type="button" ng-click="queryByTownId( item.id )">Detail</button>
+                                </td>
+                                <td>
+                                    <div ng-if=" (townDetail != undefined) && (townDetail.name == item.name) ">
+                                        <!-- {{ townDetail | json }} -->
+                                        <a href="{{ townDetail.img }}">{{ townDetail.name }}</a>
+                                        <img ng-src="{{ townDetail.img }}" ng-style="{ 'width':'200px' }" title="{{ townDetail.name }}" alt="{{ townDetail.name }}"/>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col-1"></div>
+            </div>
+        </div>
+
+    </body>
+</html>
+
+
