@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.8/angular.min.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+        <script src="./index.js"></script>
+        <style>
+            .invert{
+                -webkit-filter: invert(1);
+            }
+        </style>
+    </head>
+    <body ng-app="myApp" class="container">
+
+        <div class="container" ng-controller="firstController" style="text-align:center; margin-top:1cm;">
+            <div class="row" style="height: 470px;">
+                <div class="col-1"></div>
+                <div class="col-10">
+                    <h1 style="font-family:微軟正黑體;">測試Angular各種指令</h1>
+                    <img src="./images/普烏.jpg" alt="" style="width: 50%" 
+                        ng-if="ngIf_flag" 
+                        ng-show="ngShow_flag" 
+                        ng-style="myNgStyle" 
+                        ng-class="{ 'invert' : ngClass_flag }"
+                    >
+                </div>
+                <div class="col-1"></div>
+            </div>
+            <br/>
+            <div class="row">
+                <div class="col-1"></div>
+                <div class="col-10">
+                    <button type="button" class="btn btn-primary" ng-click="testNgIf()">ng-if</button>
+                    <button type="button" class="btn btn-success" ng-click="testNgShow()">ng-show</button>
+                    <button type="button" class="btn btn-danger"  ng-click="testNgStyle()">ng-style</button>
+                    <button type="button" class="btn btn-warning" ng-click="testNgClass()">ng-class</button>
+                    <!-- <button type="button" class="btn btn-info"></button> -->
+                </div>
+                <div class="col-1"></div>
+            </div>
+        </div>
+
+    </body>
+</html>
