@@ -1,5 +1,6 @@
-var cartController = function ($scope) {
+var myApp = angular.module('myApp', []);
 
+myApp.controller('cartController', ['$scope', function ($scope) {
     $scope.myCart = undefined;
 
     $scope.init = function () {
@@ -111,7 +112,7 @@ var cartController = function ($scope) {
         // console.log('newValue', newValue);
         // console.log('oldValue', oldValue);
 
-        angular.forEach(newValue, (elem,index) => {
+        angular.forEach(newValue, (elem, index) => {
             // console.log(elem.quantity);
             // console.log('index >>>',index);
             if (elem.quantity < 1) {
@@ -120,9 +121,9 @@ var cartController = function ($scope) {
                     $scope.remove(elem);
                 } else {
                     // console.log('oldValue[index] >>>',oldValue[index]);
-                    elem.quantity = oldValue[index].quantity;// 若confirm取消，將數值還原
+                    elem.quantity = oldValue[index].quantity; // 若confirm取消，將數值還原
                 }
             }
         })
     }, true /*DeepWatch*/ );
-}
+}]);
