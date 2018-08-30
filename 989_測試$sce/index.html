@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.8/angular.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+</head>
+
+<body ng-app="myApp">
+
+    <div ng-controller="firstController" class="container">
+        <div class="row">
+            <div class="col-2"></div>
+            <div class="col-8">
+                {{ '{' + '{ myMsg }' + '}' }} = <h2>{{ myMsg }}</h2>
+
+                {{ '{' + '{ myMsgEscape }' + '}' }} = <h2>{{ myMsgEscape }}</h2>
+
+                <!-- <h2 ng-bind-html="myMsg"></h2> -->
+
+                <h2 ng-bind-html="myMsgEscape"></h2><!-- 解析HTML成功 -->
+
+                <h2 ng-bind-html="myMsg | to_trusted_filter : '幹'"></h2><!-- 解析HTML成功 -->
+            </div>
+            <div class="col-2"></div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-2"></div>
+            <div class="col-8">
+                <table class="table table-hover" border="2">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>說明</th>
+                            <th>網址</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>外部來的 HTML 安全嗎？ $sce & ng-sanitize</td>
+                            <td>https://ithelp.ithome.com.tw/articles/10160695</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>angular中的ng-bind-html指令和$sce服务</td>
+                            <td>https://segmentfault.com/a/1190000000639561</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-2"></div>
+        </div>
+    </div>
+
+
+
+    <script>
+        var myApp = angular.module('myApp', []);
+
+        myApp.controller('firstController', ['$scope', '$sce', function ($scope, $sce) {
+
+            $scope.init = function () {
+                $scope.myMsg = "hello,<br><b>今天我们去哪里？</b>"
+                $scope.myMsgEscape = $sce.trustAsHtml($scope.myMsg);
+            }
+            $scope.init();
+
+        }]);
+
+        myApp.filter('to_trusted_filter', ['$sce', function ($sce) {
+            return function (inpVal /*要過濾的值*/ , _arg /*傳入的參數*/ ) {
+                console.log('要過濾的值 >>> ', inpVal);
+                console.log('傳入的參數 >>> ', _arg);
+                return $sce.trustAsHtml(inpVal);
+            };
+        }]);
+    </script>
+</body>
+
+</html>
