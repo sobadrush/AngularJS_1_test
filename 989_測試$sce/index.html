@@ -63,7 +63,7 @@
     <script>
         var myApp = angular.module('myApp', []);
 
-        myApp.controller('firstController', ['$scope', '$sce', function ($scope, $sce) {
+        myApp.controller('firstController', ['$scope', /* '$sce', */ function ($scope/* , $sce */) {
 
             $scope.init = function () {
                 $scope.myMsg = "hello,<br><b>今天我们去哪里？</b>"
