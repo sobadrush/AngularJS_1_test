@@ -14,6 +14,20 @@
 <body ng-app="myApp">
 
     <div class="container" ng-controller="cartController">
+
+        <div style="margin:1.5cm;border:3px solid black;">
+            <h3 style="font-family:微軟正黑體">新增商品</h3>
+            產品編號<input type="text" style="margin:0.5cm;" ng-model="productVO.id"/>
+            產品名稱<input type="text" style="margin:0.5cm;" ng-model="productVO.name"/><br/>
+            產品單價<input type="text" style="margin:0.5cm;" ng-model="productVO.price"/>
+            產品庫存<input type="text" style="margin:0.5cm;" ng-model="productVO.quantity"/>
+            <button type="button" class="btn btn-info" ng-click="doAddProduct( productVO )">確認新增</button>
+
+            <hr/>
+            雙向綁定的 productVO → {{ productVO }}
+
+        </div>
+
         <table class="table table-striped" ng-show="!isProductsInCart()">
             <thead>
                 <tr>

@@ -1,9 +1,13 @@
 var myApp = angular.module('myApp', []);
 
 myApp.controller('cartController', ['$scope', function ($scope) {
+    
+    $scope.productVO = undefined; // 新增的商品資料
+
     $scope.myCart = undefined;
 
     $scope.init = function () {
+
         $scope.myCart = [{
                 id: 1000,
                 name: 'iPhone 5s',
@@ -103,6 +107,14 @@ myApp.controller('cartController', ['$scope', function ($scope) {
      */
     $scope.addQuantity = function (_item) {
         _item.quantity++;
+    }
+
+    /**
+     * 新增商品
+     */
+    $scope.doAddProduct = function (_prodVO) {
+       console.log("新增商品 , _prodVO >>> " , _prodVO);
+       $scope.myCart.push( _prodVO );
     }
 
     /**
